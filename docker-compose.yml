@@ -1,22 +1,50 @@
 services:
+  treafik:
+    image: traefik:v3
+    container_name: traefik
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - traefik:/letsencrypt
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--certificatesresolvers.duckdns.acme.email=hubretec@student.42.fr"
+      - "--certificatesresolvers.duckdns.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.duckdns.acme.dnschallenge=true"
+      - "--certificatesresolvers.duckdns.acme.dnschallenge.provider=duckdns"
+    env_file: ./.env/treafik.env
   wordpress:
-    image: "wordpress"
-    container_name: "wordpress"
+    image: wordpress
+    container_name: wordpress
     ports:
       - 8080:80
       - 4443:443
     env_file: ./.env/wordpress.env
     volumes:
       - wordpress:/var/www/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cloud1.rule=Host(`heuu.duckdns.org`)"
+      - "traefik.http.routers.cloud1.entrypoints=websecure"
+      - "treafik.http.services.cloud1.loadbalancer.server.port=80"
+      - "traefik.http.routers.cloud1.tls=true"
+      - "traefik.http.routers.cloud1.tls.certresolver=duckdns"
     restart: unless-stopped
   phpmyadmin:
-     image: "phpmyadmin"
-     container_name: "phpmyadmin"
+     image: phpmyadmin
+     container_name: phpmyadmin
      env_file: ./.env/phpmyadmin.env
      restart: unless-stopped
   mysql:
-     image: "mysql"
-     container_name: "mysql"
+     image: mysql
+     container_name: mysql
      env_file: ./.env/mysql.env
      volumes:
        - mysql:/var/lib/mysql
@@ -25,3 +53,4 @@ services:
 volumes:
   wordpress:
   mysql:
+  traefik:
