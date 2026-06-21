@@ -23,9 +23,6 @@ services:
   wordpress:
     image: wordpress
     container_name: wordpress
-    ports:
-      - 80:80
-      - 443:443
     env_file: ./.env/wordpress.env
     volumes:
       - wordpress:/var/www/html
