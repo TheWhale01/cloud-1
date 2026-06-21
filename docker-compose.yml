@@ -19,7 +19,7 @@ services:
       - "--certificatesresolvers.duckdns.acme.storage=/letsencrypt/acme.json"
       - "--certificatesresolvers.duckdns.acme.dnschallenge=true"
       - "--certificatesresolvers.duckdns.acme.dnschallenge.provider=duckdns"
-    env_file: ./.env/treafik.env
+    env_file: ./.env/traefik.env
   wordpress:
     image: wordpress
     container_name: wordpress
