@@ -1,5 +1,0 @@
-{
-  "name": "cloud-1",
-  "service": "cloud-1",
-  "dockerComposeFile": "../docker-compose.yml"
-}
