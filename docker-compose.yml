@@ -1,0 +1,6 @@
+services:
+  cloud-1:
+    image: ubuntu:latest
+    command: sleep infinity
+    volumes:
+      - ./:/workspaces/cloud-1
