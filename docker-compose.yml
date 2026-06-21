@@ -1,5 +1,5 @@
 services:
-  treafik:
+  traefik:
     image: traefik:v3
     container_name: traefik
     ports:
@@ -7,6 +7,7 @@ services:
       - 443:443
     volumes:
       - traefik:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     command:
       - "--api.insecure=true"
       - "--providers.docker=true"
@@ -30,7 +31,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.cloud1.rule=Host(`heuu.duckdns.org`)"
       - "traefik.http.routers.cloud1.entrypoints=websecure"
-      - "treafik.http.services.cloud1.loadbalancer.server.port=80"
+      - "traefik.http.services.cloud1.loadbalancer.server.port=80"
       - "traefik.http.routers.cloud1.tls=true"
       - "traefik.http.routers.cloud1.tls.certresolver=duckdns"
     restart: unless-stopped
