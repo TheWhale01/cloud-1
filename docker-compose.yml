@@ -1,5 +1,5 @@
 services:
-  treafik:
+  traefik:
     image: traefik:v3
     container_name: traefik
     ports:
