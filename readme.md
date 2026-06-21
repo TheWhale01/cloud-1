@@ -63,3 +63,9 @@ And then you are ready to start the containers
 ```bash
 docker compose up --build -d
 ```
+
+## Commands
+
+Connect to AWS : `ssh -i ~/.ssh/cloud-1.pem ubuntu@16.171.46.109`
+Verify your inventory : `ansible-inventory -i inventory.ini --list`
+ansible-playbook -i inventory.ini playbook.yaml
