@@ -30,7 +30,10 @@ First you'll need to create the enviornment files containing the database secret
 
 ```bash
 mkdir .env/
-touch .env/mysql.env .env/phpmyadmin.env .env/wordpress.env
+touch .env/mysql.env \
+    .env/phpmyadmin.env \
+    .env/wordpress.env \
+    .env/treafik.env
 ```
 
 Here is an example of the values you'll need to fill in those files:
@@ -43,13 +46,16 @@ MYSQL_USER=test
 MYSQL_DATABASE=test
 
 # phpmyadmin.env
-MYSQL_ROOT_PASSWORD=cloud-1
+MYSQL_ROOT_PASSWORD=test
 
 # wordpress.env
 WORDPRESS_DB_HOST=mysql
-WORDPRESS_DB_USER=cloud-1
-WORDPRESS_DB_PASSWORD=cloud-1
-WORDPRESS_DB_NAME=cloud-1
+WORDPRESS_DB_USER=test
+WORDPRESS_DB_PASSWORD=test
+WORDPRESS_DB_NAME=test
+
+# traefik.env
+DUCKDNS_TOKEN=your-super-secret-duckdns-token
 ```
 
 And then you are ready to start the containers
