@@ -33,7 +33,6 @@ mkdir .env/
 touch .env/mysql.env \
     .env/phpmyadmin.env \
     .env/wordpress.env \
-    .env/treafik.env
 ```
 
 Here is an example of the values you'll need to fill in those files:
@@ -47,15 +46,16 @@ MYSQL_DATABASE=test
 
 # phpmyadmin.env
 MYSQL_ROOT_PASSWORD=test
+PMA_HOST=mysql
 
 # wordpress.env
 WORDPRESS_DB_HOST=mysql
 WORDPRESS_DB_USER=test
 WORDPRESS_DB_PASSWORD=test
 WORDPRESS_DB_NAME=test
-
-# traefik.env
-DUCKDNS_TOKEN=your-super-secret-duckdns-token
+ADMIN_USER=test
+ADMIN_PASSWORD=test
+ADMIN_EMAIL=test@mail.com
 ```
 
 And then you are ready to start the containers
@@ -64,8 +64,8 @@ And then you are ready to start the containers
 docker compose up --build -d
 ```
 
-## Commands
+## Commands
 
 Connect to AWS : `ssh -i ~/.ssh/cloud-1.pem ubuntu@16.171.46.109`
 Verify your inventory : `ansible-inventory -i inventory.ini --list`
-ansible-playbook -i inventory.ini playbook.yaml
+Run the playbook : `ansible-playbook -i inventory.ini playbook.yaml`
