@@ -33,7 +33,6 @@ mkdir .env/
 touch .env/mysql.env \
     .env/phpmyadmin.env \
     .env/wordpress.env \
-    .env/treafik.env
 ```
 
 Here is an example of the values you'll need to fill in those files:
@@ -57,9 +56,6 @@ WORDPRESS_DB_NAME=test
 ADMIN_USER=test
 ADMIN_PASSWORD=test
 ADMIN_EMAIL=test@mail.com
-
-# traefik.env
-DUCKDNS_TOKEN=your-super-secret-duckdns-token
 ```
 
 And then you are ready to start the containers

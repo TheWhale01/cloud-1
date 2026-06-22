@@ -16,7 +16,6 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-    env_file: ./.env/traefik.env
     restart: unless-stopped
   wordpress:
     image: wordpress
