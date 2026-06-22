@@ -1,4 +1,4 @@
-- name: My first play
+- name: cloud-1
   hosts: AWS
   become: true
 
